@@ -1,11 +1,42 @@
+const gitHubBaseUrl = 'https://github.com'
+const starlightGitHubUrl = `${gitHubBaseUrl}/withastro/starlight`
+
 export const CommandDefinitions = {
   changelog: {
     keyword: 'c',
-    redirect: 'https://github.com/withastro/starlight/blob/main/packages/starlight/CHANGELOG.md',
+    redirect: `${starlightGitHubUrl}/blob/main/packages/starlight/CHANGELOG.md`,
   },
   code_search: {
     keyword: 's',
-    redirect: 'https://github.com/search?q=repo%3Awithastro%2Fstarlight%20%SJT_QUERY%&type=code',
+    redirect: `${gitHubBaseUrl}/search?q=repo%3Awithastro%2Fstarlight%20%SJT_QUERY%&type=code`,
+  },
+  discussions: {
+    keyword: 'd',
+    redirect: `${starlightGitHubUrl}/discussions`,
+  },
+  github: {
+    keyword: 'g',
+    redirect: `${starlightGitHubUrl}/`,
+  },
+  home: {
+    keyword: 'h',
+    redirect: 'https://starlight.astro.build',
+  },
+  issues: {
+    keyword: 'i',
+    redirect: `${starlightGitHubUrl}/issues`,
+  },
+  pull_requests: {
+    keyword: 'p',
+    redirect: `${starlightGitHubUrl}/pulls`,
+  },
+  releases: {
+    keyword: 'r',
+    redirect: `${starlightGitHubUrl}/releases`,
+  },
+  last_release: {
+    keyword: 'lr',
+    redirect: `${starlightGitHubUrl}/releases/latest`,
   },
 } as const satisfies Record<string, CommandDefinition>
 
@@ -16,19 +47,18 @@ const commandKeywordsMap = new Map<CommandKeyword, CommandType>(
   Object.entries(CommandDefinitions).map(([type, definition]) => [definition.keyword, type as CommandType]),
 )
 
-const defaultCommand = { type: 'default' } satisfies Command
-
 export function parseCommandStr(commandStr: string): Command {
   const sanitizedCommandStr = commandStr.toLowerCase().trim()
-  if (sanitizedCommandStr.length === 0) return defaultCommand
+  if (sanitizedCommandStr.length === 0) return { type: 'invalid' }
+
+  const searchCommand: Command = { type: 'search', query: commandStr }
 
   const match = sanitizedCommandStr.match(commandRegex)
-  if (!match) return defaultCommand
-  const { keyword, query } = match.groups ?? {}
-  if (keyword === undefined || keyword.length === 0) return defaultCommand
+  const { keyword, query } = match?.groups ?? {}
+  if (keyword === undefined || keyword.length === 0) return searchCommand
 
   const commandDefinition = getCommandDefinitionFromKeyword(keyword)
-  if (!commandDefinition) return defaultCommand
+  if (!commandDefinition) return searchCommand
 
   const [type, { keyword: _, ...definition }] = commandDefinition
 
@@ -56,6 +86,7 @@ type CommandType = keyof typeof CommandDefinitions
 type CommandKeyword = typeof commandKeywords extends Set<infer TType> ? TType : never
 
 interface Command extends Omit<CommandDefinition, 'keyword'> {
-  type: CommandType | 'default'
+  // TODO(HiDeoo) Should search be bundled with the other commands?
+  type: CommandType | 'search' | 'invalid'
   query?: string | undefined
 }

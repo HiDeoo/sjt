@@ -7,16 +7,19 @@ export const onRequest = defineMiddleware((context, next) => {
   if (url.pathname !== '/') return next()
 
   const query = url.searchParams.get('q')
-  if (!query || query.length === 0) return next()
+  if (!query) return next()
 
   const command = parseCommandStr(query)
+  if (command.type === 'invalid') return next()
 
-  if (command.type === 'default' || !command.redirect) return next()
+  if (command.type === 'search') {
+    // TODO(HiDeoo) Search documentation
+  }
 
   return new Response(null, {
     status: 302,
     headers: {
-      Location: command.redirect,
+      Location: command.redirect ?? '// TODO(HiDeoo)',
     },
   })
 })
