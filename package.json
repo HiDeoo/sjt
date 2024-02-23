@@ -1,0 +1,52 @@
+{
+  "name": "sjt",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "",
+  "author": "HiDeoo <github@hideoo.dev> (https://hideoo.dev)",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "echo \"Error: no test implemented.\" && exit 1",
+    "lint": "prettier -c --cache . && eslint . --cache --max-warnings=0 && tsc --noEmit && astro check",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@astrojs/check": "0.5.5",
+    "astro": "4.4.4"
+  },
+  "devDependencies": {
+    "@hideoo/eslint-config": "3.0.0",
+    "@hideoo/prettier-config": "2.0.0",
+    "@hideoo/tsconfig": "2.0.1",
+    "eslint": "8.56.0",
+    "husky": "9.0.11",
+    "lint-staged": "15.2.2",
+    "prettier": "3.2.5",
+    "prettier-plugin-astro": "0.13.0",
+    "typescript": "5.3.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@8.15.3",
+  "private": true,
+  "sideEffects": false,
+  "keywords": [],
+  "homepage": "https://github.com/HiDeoo/sjt",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HiDeoo/sjt.git"
+  },
+  "bugs": "https://github.com/HiDeoo/sjt/issues",
+  "lint-staged": {
+    "*": [
+      "prettier -w -u --cache",
+      "eslint --cache --no-warn-ignored --max-warnings=0"
+    ]
+  }
+}
