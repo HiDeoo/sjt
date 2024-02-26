@@ -1,5 +1,7 @@
 const gitHubBaseUrl = 'https://github.com'
 const starlightGitHubUrl = `${gitHubBaseUrl}/withastro/starlight`
+const starlightDocsUrl = 'https://starlight.astro.build'
+const searchEngineUrl = 'https://duckduckgo.com/?q=%21%20'
 
 export const CommandDefinitions = {
   changelog: {
@@ -8,7 +10,7 @@ export const CommandDefinitions = {
   },
   code_search: {
     keyword: 's',
-    redirect: `${gitHubBaseUrl}/search?q=repo%3Awithastro%2Fstarlight%20%SJT_QUERY%&type=code`,
+    redirect: `${gitHubBaseUrl}/search?q=repo%3Awithastro%2Fstarlight%20__SJT_QUERY__&type=code`,
   },
   discussions: {
     keyword: 'd',
@@ -20,7 +22,7 @@ export const CommandDefinitions = {
   },
   home: {
     keyword: 'h',
-    redirect: 'https://starlight.astro.build',
+    redirect: starlightDocsUrl,
   },
   issues: {
     keyword: 'i',
@@ -51,7 +53,11 @@ export function parseCommandStr(commandStr: string): Command {
   const sanitizedCommandStr = commandStr.toLowerCase().trim()
   if (sanitizedCommandStr.length === 0) return { type: 'invalid' }
 
-  const searchCommand: Command = { type: 'search', query: commandStr }
+  const searchCommand: Command = makeCommand({
+    type: 'search',
+    query: `site:${starlightDocsUrl} ${commandStr}`,
+    redirect: `${searchEngineUrl}__SJT_QUERY__`,
+  })
 
   const match = sanitizedCommandStr.match(commandRegex)
   const { keyword, query } = match?.groups ?? {}
@@ -64,17 +70,21 @@ export function parseCommandStr(commandStr: string): Command {
 
   const command: Command = { ...definition, type, query }
 
-  if (command.redirect) {
-    command.redirect = command.redirect.replaceAll('%SJT_QUERY%', encodeURIComponent(query ?? ''))
-  }
-
-  return command
+  return makeCommand(command)
 }
 
 function getCommandDefinitionFromKeyword(keyword: string): [CommandType, CommandDefinition] | undefined {
   const commandType = commandKeywordsMap.get(keyword as CommandKeyword)
 
   return commandType ? [commandType, CommandDefinitions[commandType]] : undefined
+}
+
+function makeCommand(command: Command): Command {
+  if (command.redirect) {
+    command.redirect = command.redirect.replaceAll('__SJT_QUERY__', encodeURIComponent(command.query ?? ''))
+  }
+
+  return command
 }
 
 interface CommandDefinition {
@@ -86,7 +96,6 @@ type CommandType = keyof typeof CommandDefinitions
 type CommandKeyword = typeof commandKeywords extends Set<infer TType> ? TType : never
 
 interface Command extends Omit<CommandDefinition, 'keyword'> {
-  // TODO(HiDeoo) Should search be bundled with the other commands?
   type: CommandType | 'search' | 'invalid'
   query?: string | undefined
 }

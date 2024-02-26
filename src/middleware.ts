@@ -10,16 +10,12 @@ export const onRequest = defineMiddleware((context, next) => {
   if (!query) return next()
 
   const command = parseCommandStr(query)
-  if (command.type === 'invalid') return next()
-
-  if (command.type === 'search') {
-    // TODO(HiDeoo) Search documentation
-  }
+  if (command.type === 'invalid' || !command.redirect) return next()
 
   return new Response(null, {
     status: 302,
     headers: {
-      Location: command.redirect ?? '// TODO(HiDeoo)',
+      Location: command.redirect,
     },
   })
 })
