@@ -3,7 +3,6 @@ const starlightGitHubUrl = `${gitHubBaseUrl}/withastro/starlight`
 const starlightDocsUrl = 'https://starlight.astro.build'
 const searchEngineUrl = 'https://duckduckgo.com/?no_redirect=0&q=! '
 
-// TODO(HiDeoo) reorder
 export const CommandDefinitions = {
   code_search: {
     description: 'Code search the provided text',
