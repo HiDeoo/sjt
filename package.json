@@ -2,7 +2,7 @@
   "name": "sjt",
   "version": "0.0.1",
   "license": "MIT",
-  "description": "",
+  "description": "Quickly navigate to Starlight common webpages.",
   "author": "HiDeoo <github@hideoo.dev> (https://hideoo.dev)",
   "type": "module",
   "scripts": {
@@ -42,7 +42,14 @@
   "packageManager": "pnpm@8.15.3",
   "private": true,
   "sideEffects": false,
-  "keywords": [],
+  "keywords": [
+    "starlight",
+    "sjt",
+    "starlight-jump-to",
+    "chrome",
+    "firefox",
+    "alfred"
+  ],
   "homepage": "https://github.com/HiDeoo/sjt",
   "repository": {
     "type": "git",
