@@ -15,7 +15,7 @@
 
 ## Getting Started
 
-Want to get started immediately? Visit [sjt.vercel.app](https://sjt.vercel.app).
+Want to get started immediately? Visit [sjt.vercel.app](https://sjt.vercel.app) to get started.
 
 ## License
 
