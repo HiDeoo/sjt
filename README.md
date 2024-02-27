@@ -1,11 +1,6 @@
 <div align="center">
-  <h1>sjt 🚧</h1>
-  <p>sjt description</p>
-  <p>
-    <a href="https://dummyimage.com/520x350/121212/cdc8be.png&text=screenshot" title="Screenshot of sjt">
-      <img alt="Screenshot of sjt" src="https://dummyimage.com/520x350/121212/cdc8be.png&text=screenshot" width="520" />
-    </a>
-  </p>
+  <h1>Starlight Jump To 🦘</h1>
+  <p><code>sjt</code> — Quickly navigate to Starlight common webpages.</p>
 </div>
 
 <div align="center">
@@ -18,12 +13,9 @@
   <br />
 </div>
 
-## Features
+## Getting Started
 
-sjt presentation.
-
-- sjt feature 1
-- sjt feature 2
+Want to get started immediately? Visit [sjt.vercel.app](https://sjt.vercel.app).
 
 ## License
 
