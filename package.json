@@ -41,7 +41,6 @@
   },
   "packageManager": "pnpm@8.15.3",
   "private": true,
-  "sideEffects": false,
   "keywords": [
     "starlight",
     "sjt",
