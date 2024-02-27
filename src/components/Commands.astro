@@ -22,16 +22,12 @@ import { CommandDefinitions } from '../libs/commands'
   </p>
 
   <style>
-    h2 {
-      font-size: var(--text-xl);
-      font-weight: 600;
-      line-height: 1.25;
-      overflow-wrap: anywhere;
-      text-wrap: balance;
+    ul {
+      margin-bottom: 1rem;
     }
 
-    ul {
-      margin-block: 1rem 0.75rem;
+    li + li {
+      margin-top: 0.125rem;
     }
 
     button {
@@ -46,16 +42,12 @@ import { CommandDefinitions } from '../libs/commands'
     }
 
     button:focus-visible {
-      outline: 2px solid red;
+      outline: 2px solid var(--color-gray-300);
     }
 
     code {
       font-family: var(--font-mono);
       font-size: var(--text-xs);
-    }
-
-    p {
-      line-height: 1.5;
     }
   </style>
 

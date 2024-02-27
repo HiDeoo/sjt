@@ -54,6 +54,7 @@ const ogImageUrl = new URL('/og.png', Astro.site)
   :where(html) {
     --color-white: hsl(0 0% 98%);
     --color-gray-300: hsl(240 4% 84%);
+    --color-gray-400: hsl(240 2% 63%);
     --color-gray-500: hsl(240 6% 41%);
     --color-gray-800: hsl(240 12% 19%);
     --color-black: hsl(220 11% 5%);
@@ -73,7 +74,7 @@ const ogImageUrl = new URL('/og.png', Astro.site)
     color: var(--color-gray-300);
     display: grid;
     font-family: var(--font-sans);
-    line-height: 1.8;
+    line-height: 1.6;
     place-items: center;
   }
 
@@ -82,5 +83,25 @@ const ogImageUrl = new URL('/og.png', Astro.site)
     max-width: 30rem;
     padding-inline: 1rem;
     width: 100%;
+  }
+
+  :global(h2) {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    line-height: 1.25;
+    margin-block: 1.75rem 1rem;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  :global(a:not([role='tab'])) {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+
+    &:focus-visible {
+      border-radius: 0.25rem;
+      outline: 2px solid var(--color-gray-300);
+      text-decoration: none;
+    }
   }
 </style>
