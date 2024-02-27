@@ -6,4 +6,5 @@ export default defineConfig({
   adapter: vercel({
     edgeMiddleware: true,
   }),
+  site: 'https://sjt.vercel.app',
 })
