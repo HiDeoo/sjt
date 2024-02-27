@@ -2,16 +2,15 @@ import { describe, expect, test } from 'vitest'
 
 import { CommandDefinitions, parseCommandStr } from '../libs/commands'
 
-test('returns the default command with an empty string', () => {
-  expect(parseCommandStr('')).toMatchObject({ type: 'default' })
+test('returns an invalid command with an empty string', () => {
+  expect(parseCommandStr('')).toMatchObject({ type: 'invalid' })
 })
 
-test('returns the default command with an empty string', () => {
-  expect(parseCommandStr('')).toMatchObject({ type: 'default' })
-})
-
-test('returns the default command for unknown commands', () => {
-  expect(parseCommandStr('unknown')).toMatchObject({ type: 'default' })
+test('returns the search command for unknown commands', () => {
+  expect(parseCommandStr('unknown')).toMatchObject({
+    type: 'search',
+    query: 'site:https://starlight.astro.build unknown',
+  })
 })
 
 describe.each([Object.keys(CommandDefinitions)])(`handles the '%s' command`, (commandStr) => {
@@ -30,9 +29,9 @@ describe.each([Object.keys(CommandDefinitions)])(`handles the '%s' command`, (co
     })
   })
 
-  test('returns the default command if a known keyword is used as a query', () => {
+  test('returns the search command if a known keyword is used as a query', () => {
     expect(parseCommandStr(`unknown ${getCommandKeyword(commandStr)}`)).toMatchObject({
-      type: 'default',
+      type: 'search',
     })
   })
 })
@@ -45,7 +44,7 @@ test('returns redirect URLs', () => {
 
 test('replaces query placeholders in redirect URLs', () => {
   expect(parseCommandStr(`${getCommandKeyword('code_search')} this is a test`).redirect).toMatchInlineSnapshot(
-    `"https://github.com/search?q=repo%3Awithastro%2Fstarlight%20this%20is%20a%20test&type=code"`,
+    `"https://github.com/search?q=repo%3Awithastro%2Fstarlight%20this is a test&type=code"`,
   )
 })
 
