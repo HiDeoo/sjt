@@ -1,0 +1,103 @@
+---
+import '@unocss/reset/tailwind.css'
+
+const title = 'Starlight Jump To'
+const description = 'Quickly navigate to Starlight common webpages.'
+const author = 'HiDeoo'
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site)
+const ogImageUrl = new URL('/images/og.png', Astro.site)
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>{title}</title>
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+
+    <meta name="author" content={author} />
+    <meta name="color-scheme" content="dark" />
+    <meta name="description" property="og:description" content={description} />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="theme-color" content="hsl(220 11% 5%)" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:alt" content={description} />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content={description} />
+    <meta name="twitter:title" content={title} />
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style>
+  :where(html) {
+    --color-white: hsl(0 0% 98%);
+    --color-gray-300: hsl(240 4% 84%);
+    --color-gray-400: hsl(240 2% 63%);
+    --color-gray-500: hsl(240 6% 41%);
+    --color-gray-800: hsl(240 12% 19%);
+    --color-black: hsl(220 11% 5%);
+
+    --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+      Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+    --text-xs: 0.875rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-4xl: 2rem;
+  }
+
+  body {
+    background-color: var(--color-black);
+    color: var(--color-gray-300);
+    display: grid;
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    place-items: center;
+  }
+
+  main {
+    display: block;
+    max-width: 30rem;
+    padding-inline: 1rem;
+    width: 100%;
+  }
+
+  :global(h2) {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    line-height: 1.25;
+    margin-block: 1.75rem 1rem;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  :global(a:not([role='tab'])) {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+
+    &:focus-visible {
+      border-radius: 0.25rem;
+      outline: 2px solid var(--color-gray-300);
+      text-decoration: none;
+    }
+  }
+</style>

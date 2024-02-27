@@ -1,0 +1,42 @@
+<form>
+  <label for="command-input">sjt</label>
+  <input id="command-input" name="q" placeholder="[command]" type="text" />
+  <button aria-label="Jump To" tabindex="-1" type="submit">→</button>
+</form>
+
+<style>
+  form {
+    align-items: center;
+    color: var(--color-white);
+    display: flex;
+    font-size: var(--text-xl);
+    margin-block: 2rem 2.5rem;
+    position: relative;
+  }
+
+  label,
+  button {
+    padding-inline: 1rem;
+    position: absolute;
+  }
+
+  input {
+    background-color: var(--color-gray-800);
+    border-radius: 0.375rem;
+    padding: 0.25rem 3rem;
+    width: 100%;
+  }
+
+  input::placeholder {
+    color: var(--color-gray-500);
+  }
+
+  input:focus {
+    outline: 2px solid var(--color-gray-300);
+    outline-offset: 2px;
+  }
+
+  button {
+    right: 0;
+  }
+</style>
