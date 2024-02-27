@@ -8,10 +8,10 @@ import { CommandDefinitions } from '../libs/commands'
     {
       Object.values(CommandDefinitions).map((command) => (
         <li>
-          <button data-example={command.example}>
-            <code>{command.keyword}</code>
+          <button aria-label={command.description} data-example={command.example}>
+            <code aria-hidden="true">{command.keyword}</code>
           </button>
-          {command.description}
+          <span aria-hidden="true">{command.description}</span>
         </li>
       ))
     }
