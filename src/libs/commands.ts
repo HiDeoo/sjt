@@ -5,23 +5,17 @@ const searchEngineUrl = 'https://duckduckgo.com/?no_redirect=0&q=! '
 
 // TODO(HiDeoo) reorder
 export const CommandDefinitions = {
+  code_search: {
+    description: 'Code search the provided text',
+    example: 's AstroUserConfig',
+    keyword: 's',
+    redirect: `${gitHubBaseUrl}/search?q=repo%3Awithastro%2Fstarlight%20__SJT_QUERY__&type=code`,
+  },
   changelog: {
     description: 'Changelog',
     example: 'c',
     keyword: 'c',
     redirect: `${starlightGitHubUrl}/blob/main/packages/starlight/CHANGELOG.md`,
-  },
-  code_search: {
-    description: 'Code search the provided query',
-    example: 's AstroUserConfig',
-    keyword: 's',
-    redirect: `${gitHubBaseUrl}/search?q=repo%3Awithastro%2Fstarlight%20__SJT_QUERY__&type=code`,
-  },
-  discussions: {
-    description: 'Discussions',
-    example: 'd',
-    keyword: 'd',
-    redirect: `${starlightGitHubUrl}/discussions`,
   },
   github: {
     description: 'GitHub repository',
@@ -29,23 +23,17 @@ export const CommandDefinitions = {
     keyword: 'g',
     redirect: `${starlightGitHubUrl}/`,
   },
-  home: {
-    description: 'Homepage',
-    example: 'h',
-    keyword: 'h',
-    redirect: starlightDocsUrl,
+  pull_requests: {
+    description: 'Pull requests',
+    example: 'p',
+    keyword: 'p',
+    redirect: `${starlightGitHubUrl}/pulls`,
   },
   issues: {
     description: 'Issues',
     example: 'i',
     keyword: 'i',
     redirect: `${starlightGitHubUrl}/issues`,
-  },
-  pull_requests: {
-    description: 'Pull requests',
-    example: 'p',
-    keyword: 'p',
-    redirect: `${starlightGitHubUrl}/pulls`,
   },
   releases: {
     description: 'Releases',
@@ -58,6 +46,18 @@ export const CommandDefinitions = {
     example: 'lr',
     keyword: 'lr',
     redirect: `${starlightGitHubUrl}/releases/latest`,
+  },
+  discussions: {
+    description: 'Discussions',
+    example: 'd',
+    keyword: 'd',
+    redirect: `${starlightGitHubUrl}/discussions`,
+  },
+  home: {
+    description: 'Homepage',
+    example: 'h',
+    keyword: 'h',
+    redirect: starlightDocsUrl,
   },
 } as const satisfies Record<string, CommandDefinition>
 
