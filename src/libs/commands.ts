@@ -26,7 +26,7 @@ export const CommandDefinitions = {
     description: 'Pull requests',
     example: 'p',
     keyword: 'p',
-    redirect: `${starlightGitHubUrl}/pulls`,
+    redirect: `${starlightGitHubUrl}/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc`,
   },
   issues: {
     description: 'Issues',
@@ -51,6 +51,12 @@ export const CommandDefinitions = {
     example: 'd',
     keyword: 'd',
     redirect: `${starlightGitHubUrl}/discussions`,
+  },
+  translation: {
+    description: 'Translation status',
+    example: 't',
+    keyword: 't',
+    redirect: 'https://i18n.starlight.astro.build/',
   },
   home: {
     description: 'Homepage',
