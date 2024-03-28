@@ -52,6 +52,12 @@ export const CommandDefinitions = {
     keyword: 'd',
     redirect: `${starlightGitHubUrl}/discussions`,
   },
+  translation: {
+    description: 'Translation status',
+    example: 't',
+    keyword: 't',
+    redirect: 'https://i18n.starlight.astro.build/',
+  },
   home: {
     description: 'Homepage',
     example: 'h',
